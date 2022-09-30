@@ -699,11 +699,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 0cf18fad-8834-41c0-b51b-9d69471b1504
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: dungeon-crawler
+  organizationId: kuribodragon
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
