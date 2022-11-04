@@ -13,30 +13,39 @@ public class EnemyMovement : MonoBehaviour //change later
         INVESTIGATING,
     }
     public NavMeshAgent agent;
-    public Transform player;
+    private Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    public float sightRadius = 5;
+    private Vector3 lastPlayerPosition;
+    enemyState currentState;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyState currentState = enemyState.WANDERING;
+        currentState = enemyState.WANDERING;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsPlayer();
+        Collider[] inRangePlayers = Physics.OverlapSphere(this.transform.position, sightRadius, whatIsPlayer);
+        if (inRangePlayers.Length > 0)
+        {
+            player = inRangePlayers[0].transform;
+            currentState = enemyState.CHASING;
+            lastPlayerPosition = player.position;
+            MoveTowardsPlayer(lastPlayerPosition);
+        } else if (currentState == enemyState.CHASING)
+        {
+            currentState=enemyState.INVESTIGATING;
+            lastPlayerPosition = player.position;
+            MoveTowardsPlayer(lastPlayerPosition);
+        }
     }
 
-    void MoveTowardsPlayer()
+    void MoveTowardsPlayer(Vector3 TargetPosition)
     {
-        //find closest player
-        //move towards them
-    }
+        agent.SetDestination(TargetPosition);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other != null)
-            return;
     }
 }
