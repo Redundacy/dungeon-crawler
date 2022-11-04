@@ -1,10 +1,15 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : NetworkBehaviour {
     [SerializeField] private float _speed = 3;
 
     [SerializeField] GameObject pauseMenu; 
+
+    [SerializeField] GameObject Boss;
 
     private Rigidbody _rb;
 
@@ -34,10 +39,23 @@ public class PlayerController : NetworkBehaviour {
                 _speed = 0;
             }
         }
+
+        if (!Boss.activeInHierarchy){
+            StartCoroutine(ExampleCoroutine());
+        }
     }
 
     public override void OnNetworkSpawn() {
         if (!IsOwner) Destroy(this);
     }
 
+    public static event Action LobbyLeft;
+
+
+    IEnumerator ExampleCoroutine(){
+        yield return new WaitForSeconds(5);
+        //LobbyLeft?.Invoke();
+        NetworkManager.Singleton.Shutdown();
+        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
+    }
 }

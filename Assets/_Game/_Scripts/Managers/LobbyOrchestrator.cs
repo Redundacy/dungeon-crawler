@@ -38,7 +38,6 @@ public class LobbyOrchestrator : NetworkBehaviour {
 
                 _mainLobbyScreen.gameObject.SetActive(false);
                 _roomScreen.gameObject.SetActive(true);
-
                 NetworkManager.Singleton.StartClient();
             }
             catch (Exception e) {
@@ -58,12 +57,10 @@ public class LobbyOrchestrator : NetworkBehaviour {
         using (new Load("Creating Lobby...")) {
             try {
                 await MatchmakingService.CreateLobbyWithAllocation(data);
-
                 _createScreen.gameObject.SetActive(false);
                 _roomScreen.gameObject.SetActive(true);
 
                 // Starting the host immediately will keep the relay server alive
-
                 NetworkManager.Singleton.StartHost();
             }
             catch (Exception e) {
@@ -168,7 +165,6 @@ public class LobbyOrchestrator : NetworkBehaviour {
     }
     
     public override void OnDestroy() {
-     
         base.OnDestroy();
         CreateLobbyScreen.LobbyCreated -= CreateLobby;
         LobbyRoomPanel.LobbySelected -= OnLobbySelected;
