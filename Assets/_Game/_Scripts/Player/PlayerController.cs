@@ -9,7 +9,7 @@ public class PlayerController : NetworkBehaviour {
 
     [SerializeField] GameObject pauseMenu; 
 
-    [SerializeField] GameObject Boss;
+    public GameObject Boss;
 
     private Rigidbody _rb;
 
@@ -20,7 +20,7 @@ public class PlayerController : NetworkBehaviour {
         _rb = GetComponent<Rigidbody>();
         oldSpeed = _speed;
 
-        //playerCamera.GetComponent<CameraFollow>().target = this.transform;
+        Boss = GameObject.FindGameObjectWithTag("Boss");
     }
 
     private void Update() {
@@ -40,7 +40,8 @@ public class PlayerController : NetworkBehaviour {
             }
         }
 
-        if (!Boss.activeInHierarchy){
+        // Boss is dead , game over
+        if (Boss == null){
             StartCoroutine(ExampleCoroutine());
         }
     }
@@ -49,12 +50,9 @@ public class PlayerController : NetworkBehaviour {
         if (!IsOwner) Destroy(this);
     }
 
-    public static event Action LobbyLeft;
-
 
     IEnumerator ExampleCoroutine(){
-        yield return new WaitForSeconds(5);
-        //LobbyLeft?.Invoke();
+        yield return new WaitForSeconds(3);
         NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
     }
