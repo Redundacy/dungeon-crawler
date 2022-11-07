@@ -1,43 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class GameManager : NetworkBehaviour {
-    [SerializeField] private PlayerController _playerPrefab;
-    private readonly Dictionary<ulong, PlayerTransform> _playersInGame = new();
+    public PlayerController _playerPrefab;
 
-    public enum GameState
-    {
-        Allocation,
-        Combat
-    }
-    public GameState CurrentGameState = GameState.Allocation;
-
+    public CharacterSelection charSelection;
+    
     public override void OnNetworkSpawn() {
-        SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
-    }
+        StartCoroutine(playerChoice());
+    }   
 
-    public void Update()
+    private IEnumerator playerChoice()
     {
-        if (_playersInGame.All(p => p.Value.GetNetworkReady()))
-        {
-            //ReadyClientRpc();
-            foreach (var player in _playersInGame)
+        bool done = false;
+        while(!done) // essentially a "while true", but with a bool to break out naturally
+        {   
+            print("not done");
+            if(_playerPrefab.tag != "Placeholder")
             {
-                player.Value.UpdateState();
+                done = true; // breaks the loop
+                SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
             }
+            yield return null; // wait until next frame, then continue execution from here (loop continues)
         }
+    
+        // now this function returns
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void SpawnPlayerServerRpc(ulong playerId) {
         var spawn = Instantiate(_playerPrefab);
         spawn.NetworkObject.SpawnWithOwnership(playerId);
-        _playersInGame.Add(playerId, spawn.transform.GetComponentInChildren<PlayerTransform>());
-
     }
 
     public override void OnDestroy() {
@@ -46,14 +41,4 @@ public class GameManager : NetworkBehaviour {
         if(NetworkManager.Singleton != null )NetworkManager.Singleton.Shutdown();
     }
 
-    [ClientRpc]
-    public void ReadyClientRpc()
-    {
-        
-    }
-
-    [ClientRpc]
-    private void ChangeStateToCombatClientRpc(ulong clientId) {
-        if (IsServer || IsOwner) return;
-    }
 }

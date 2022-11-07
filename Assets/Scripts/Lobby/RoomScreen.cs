@@ -26,7 +26,6 @@ public class RoomScreen : MonoBehaviour {
     private void OnEnable() {
         foreach (Transform child in _playerPanelParent) Destroy(child.gameObject);
         _playerPanels.Clear();
-
         LobbyOrchestrator.LobbyPlayersUpdated += NetworkLobbyPlayersUpdated;
         MatchmakingService.CurrentLobbyRefreshed += OnCurrentLobbyRefreshed;
         _startButton.SetActive(false);
@@ -83,5 +82,6 @@ public class RoomScreen : MonoBehaviour {
 
     public void OnStartClicked() {
         StartPressed?.Invoke();
+        
     }
 }

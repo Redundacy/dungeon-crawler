@@ -9,4 +9,8 @@ public class AuthenticationManager : MonoBehaviour {
             SceneManager.LoadSceneAsync("Lobby");
         }
     }
+
+    public void GameExit(){
+        Application.Quit();
+    }
 }

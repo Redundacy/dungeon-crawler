@@ -38,12 +38,11 @@ public class LobbyOrchestrator : NetworkBehaviour {
 
                 _mainLobbyScreen.gameObject.SetActive(false);
                 _roomScreen.gameObject.SetActive(true);
-
                 NetworkManager.Singleton.StartClient();
             }
             catch (Exception e) {
                 Debug.LogError(e);
-                //CanvasUtilities.Instance.ShowError("Failed joining lobby");
+                CanvasUtilities.Instance.ShowError("Failed joining lobby");
             }
         }
     }
@@ -58,7 +57,6 @@ public class LobbyOrchestrator : NetworkBehaviour {
         using (new Load("Creating Lobby...")) {
             try {
                 await MatchmakingService.CreateLobbyWithAllocation(data);
-
                 _createScreen.gameObject.SetActive(false);
                 _roomScreen.gameObject.SetActive(true);
 
@@ -67,7 +65,7 @@ public class LobbyOrchestrator : NetworkBehaviour {
             }
             catch (Exception e) {
                 Debug.LogError(e);
-                //CanvasUtilities.Instance.ShowError("Failed creating lobby");
+                CanvasUtilities.Instance.ShowError("Failed creating lobby");
             }
         }
     }
@@ -167,7 +165,6 @@ public class LobbyOrchestrator : NetworkBehaviour {
     }
     
     public override void OnDestroy() {
-     
         base.OnDestroy();
         CreateLobbyScreen.LobbyCreated -= CreateLobby;
         LobbyRoomPanel.LobbySelected -= OnLobbySelected;
@@ -184,7 +181,11 @@ public class LobbyOrchestrator : NetworkBehaviour {
     private async void OnGameStart() {
         using (new Load("Starting the game...")) {
             await MatchmakingService.LockLobby();
-            NetworkManager.Singleton.SceneManager.LoadScene("Junk Network Scene", LoadSceneMode.Single); // TODO change this one to whatever gameplay will be called
+            // This line is for the main game
+            //NetworkManager.Singleton.SceneManager.LoadScene("GameTime", LoadSceneMode.Single);
+
+            // This line is for testing 
+            NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
         }
     }
 
