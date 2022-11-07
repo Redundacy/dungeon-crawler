@@ -3,25 +3,29 @@ using UnityEngine;
 using System;
 using System.Collections;
 
+
+
 public class GameManager : NetworkBehaviour {
     public PlayerController _playerPrefab;
 
-    public CharacterSelection charSelection;
+    public int n = -1;
+
+    [SerializeField] private PlayerController[] selection = default;
     
     public override void OnNetworkSpawn() {
         StartCoroutine(playerChoice());
     }   
+
 
     private IEnumerator playerChoice()
     {
         bool done = false;
         while(!done) // essentially a "while true", but with a bool to break out naturally
         {   
-            print("not done");
-            if(_playerPrefab.tag != "Placeholder")
-            {
+            if(n != -1)
+            {                
                 done = true; // breaks the loop
-                SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
+                SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId,  n);
             }
             yield return null; // wait until next frame, then continue execution from here (loop continues)
         }
@@ -29,11 +33,13 @@ public class GameManager : NetworkBehaviour {
         // now this function returns
     }
 
+        
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnPlayerServerRpc(ulong playerId) {
-        var spawn = Instantiate(_playerPrefab);
+    private void SpawnPlayerServerRpc(ulong playerId , int n) {
+        var spawn = Instantiate(selection[n]);
         spawn.NetworkObject.SpawnWithOwnership(playerId);
     }
+
 
     public override void OnDestroy() {
         base.OnDestroy();
