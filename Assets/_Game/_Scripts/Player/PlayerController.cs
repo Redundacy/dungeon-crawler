@@ -19,9 +19,9 @@ public class PlayerController : NetworkBehaviour {
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
         oldSpeed = _speed;
-
         Boss = GameObject.FindGameObjectWithTag("Boss");
     }
+
 
     private void Update() {
         var dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -34,10 +34,8 @@ public class PlayerController : NetworkBehaviour {
                 pauseMenu.SetActive(false);
                 _speed = oldSpeed;
             } 
-            else{
-                pauseMenu.SetActive(true);
-                _speed = 0;
-            }
+            else PauseMenuExit();
+            
         }
 
         // Boss is dead , game over
@@ -55,5 +53,10 @@ public class PlayerController : NetworkBehaviour {
         yield return new WaitForSeconds(3);
         NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
+    }
+
+    public void PauseMenuExit(){
+        pauseMenu.SetActive(true);
+        _speed = 0;
     }
 }
