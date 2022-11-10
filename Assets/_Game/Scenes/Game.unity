@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1677,6 +1677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 440449775408231757, guid: 371bdb315f5e5734087d672acf2cb0e5,
     type: 3}
+  Boss: {fileID: 1821240033348871689}
   n: -1
   selection:
   - {fileID: 440449775408231757, guid: 97574813880cf9241a9299bddc9fe24a, type: 3}
@@ -2657,3 +2658,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f84c278d5da7874c8c514f9cc837604, type: 3}
+--- !u!1 &1821240033348871689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2259279335968558005, guid: 3f84c278d5da7874c8c514f9cc837604,
+    type: 3}
+  m_PrefabInstance: {fileID: 1821240033348871688}
+  m_PrefabAsset: {fileID: 0}

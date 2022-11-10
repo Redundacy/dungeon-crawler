@@ -37,23 +37,12 @@ public class PlayerController : NetworkBehaviour {
             else PauseMenuExit();
             
         }
-
-        // Boss is dead , game over
-        if (Boss == null){
-            StartCoroutine(ExampleCoroutine());
-        }
     }
 
     public override void OnNetworkSpawn() {
         if (!IsOwner) Destroy(this);
     }
 
-
-    IEnumerator ExampleCoroutine(){
-        yield return new WaitForSeconds(3);
-        NetworkManager.Singleton.Shutdown();
-        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
-    }
 
     public void PauseMenuExit(){
         pauseMenu.SetActive(true);

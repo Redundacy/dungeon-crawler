@@ -2,11 +2,13 @@ using Unity.Netcode;
 using UnityEngine;
 using System;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : NetworkBehaviour {
     public PlayerController _playerPrefab;
+
+    public GameObject Boss;
 
     public int n = -1;
 
@@ -15,7 +17,6 @@ public class GameManager : NetworkBehaviour {
     public override void OnNetworkSpawn() {
         StartCoroutine(playerChoice());
     }   
-
 
     private IEnumerator playerChoice()
     {
@@ -29,8 +30,6 @@ public class GameManager : NetworkBehaviour {
             }
             yield return null; // wait until next frame, then continue execution from here (loop continues)
         }
-    
-        // now this function returns
     }
 
         
@@ -45,6 +44,20 @@ public class GameManager : NetworkBehaviour {
         base.OnDestroy();
         MatchmakingService.LeaveLobby();
         if(NetworkManager.Singleton != null )NetworkManager.Singleton.Shutdown();
+    }
+
+    void Update(){
+        if (Boss == null)
+        {   
+            StartCoroutine(ExampleCoroutine());
+        }
+    }
+
+    IEnumerator ExampleCoroutine(){
+        yield return new WaitForSeconds(3);
+        OnDestroy();
+        print("?");
+        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
     }
 
 }

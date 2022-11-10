@@ -22,9 +22,7 @@ public class CreateLobbyScreen : MonoBehaviour {
     public void OnCreateClicked() {
         var lobbyData = new LobbyData {
             Name = _nameInput.text,
-            MaxPlayers = 5
-            //Difficulty = _difficultyDropdown.value,
-            //Type = _typeDropdown.value
+            MaxPlayers = 4
         };
 
         LobbyCreated?.Invoke(lobbyData);
