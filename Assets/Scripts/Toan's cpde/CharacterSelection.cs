@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class CharacterSelection : MonoBehaviour
+public class CharacterSelection : NetworkBehaviour
 {
     public GameManager gameManager;
 
     [SerializeField] GameObject chooseMenu; 
 
-    [SerializeField] private PlayerController _playerPrefabChoice;
+    [SerializeField] private int value;
+    
     public void Choosing(){
-        gameManager._playerPrefab = _playerPrefabChoice;
-        chooseMenu.SetActive(false);
+        gameManager.n = value;
+        chooseMenu.SetActive(false);        
     }
 }

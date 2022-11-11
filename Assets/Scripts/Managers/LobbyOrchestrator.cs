@@ -17,6 +17,7 @@ public class LobbyOrchestrator : NetworkBehaviour {
     [SerializeField] private RoomScreen _roomScreen;
 
     private void Start() {
+        print(NetworkManager.Singleton);
         _mainLobbyScreen.gameObject.SetActive(true);
         _createScreen.gameObject.SetActive(false);
         _roomScreen.gameObject.SetActive(false);
@@ -62,6 +63,7 @@ public class LobbyOrchestrator : NetworkBehaviour {
 
                 // Starting the host immediately will keep the relay server alive
                 NetworkManager.Singleton.StartHost();
+                print("Started host");
             }
             catch (Exception e) {
                 Debug.LogError(e);
@@ -165,6 +167,7 @@ public class LobbyOrchestrator : NetworkBehaviour {
     }
     
     public override void OnDestroy() {
+        print(this.gameObject.activeInHierarchy);
         base.OnDestroy();
         CreateLobbyScreen.LobbyCreated -= CreateLobby;
         LobbyRoomPanel.LobbySelected -= OnLobbySelected;
