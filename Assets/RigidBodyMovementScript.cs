@@ -16,6 +16,7 @@ public class RigidBodyMovementScript : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float Sensitivity;
     [SerializeField] private float Jumpforce;
+    [SerializeField] private float Dodgeforce;
 
     private void Update()
     {
@@ -37,6 +38,13 @@ public class RigidBodyMovementScript : MonoBehaviour
             {
                 PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
             }
+        }
+
+        if (Input.GetKeyDown("f")) 
+        {
+                {
+                    PlayerBody.AddForce(Vector3.forward * Dodgeforce, ForceMode.VelocityChange);
+                }
         }
     }
 
