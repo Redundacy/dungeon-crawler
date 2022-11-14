@@ -40,11 +40,11 @@ public class RigidBodyMovementScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("f")) 
+        if (Input.GetKey("f")) 
         {
-                {
-                    PlayerBody.AddForce(Vector3.forward * Dodgeforce, ForceMode.VelocityChange);
-                }
+                    PlayerBody.AddForce(transform.forward * Dodgeforce, ForceMode.Force);
+
+                
         }
     }
 
