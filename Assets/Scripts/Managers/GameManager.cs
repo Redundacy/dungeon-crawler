@@ -1,44 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using System;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : NetworkBehaviour {
-    [SerializeField] private PlayerController _playerPrefab;
-    private readonly Dictionary<ulong, PlayerTransform> _playersInGame = new();
+    public PlayerController _playerPrefab;
 
-    public enum GameState
-    {
-        Allocation,
-        Combat
-    }
-    public GameState CurrentGameState = GameState.Allocation;
+    public GameObject Boss;
 
+    public int n = -1;
+
+    [SerializeField] private PlayerController[] selection = default;
+    
     public override void OnNetworkSpawn() {
-        SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
-    }
+        StartCoroutine(playerChoice());
+    }   
 
-    public void Update()
+    private IEnumerator playerChoice()
     {
-        if (_playersInGame.All(p => p.Value.GetNetworkReady()))
-        {
-            //ReadyClientRpc();
-            foreach (var player in _playersInGame)
-            {
-                player.Value.UpdateState();
+        bool done = false;
+        while(!done) // essentially a "while true", but with a bool to break out naturally
+        {   
+            if(n != -1)
+            {                
+                done = true; // breaks the loop
+                SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId,  n);
             }
+            yield return null; // wait until next frame, then continue execution from here (loop continues)
         }
     }
 
+        
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnPlayerServerRpc(ulong playerId) {
-        var spawn = Instantiate(_playerPrefab);
+    private void SpawnPlayerServerRpc(ulong playerId , int n) {
+        var spawn = Instantiate(selection[n]);
         spawn.NetworkObject.SpawnWithOwnership(playerId);
-        _playersInGame.Add(playerId, spawn.transform.GetComponentInChildren<PlayerTransform>());
-
     }
+
 
     public override void OnDestroy() {
         base.OnDestroy();
@@ -46,14 +46,18 @@ public class GameManager : NetworkBehaviour {
         if(NetworkManager.Singleton != null )NetworkManager.Singleton.Shutdown();
     }
 
-    [ClientRpc]
-    public void ReadyClientRpc()
-    {
-        
+    void Update(){
+        if (Boss == null)
+        {   
+            StartCoroutine(ExampleCoroutine());
+        }
     }
 
-    [ClientRpc]
-    private void ChangeStateToCombatClientRpc(ulong clientId) {
-        if (IsServer || IsOwner) return;
+    IEnumerator ExampleCoroutine(){
+        yield return new WaitForSeconds(3);
+        OnDestroy();
+        print("?");
+        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
     }
+
 }

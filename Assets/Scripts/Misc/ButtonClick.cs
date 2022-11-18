@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 ///     Play some satisfying click sounds
 /// </summary>
+
 public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     public void OnPointerDown(PointerEventData eventData) {
         PlayClip("ButtonUp");

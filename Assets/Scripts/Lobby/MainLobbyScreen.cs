@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainLobbyScreen : MonoBehaviour {
     [SerializeField] private LobbyRoomPanel _lobbyPanelPrefab;
@@ -56,5 +57,9 @@ public class MainLobbyScreen : MonoBehaviour {
         catch (Exception e) {
             Debug.LogError(e);
         }
+    }
+
+    public void ReturnMainMenu(){
+        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
     }
 }

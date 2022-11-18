@@ -1,4 +1,4 @@
-# dungeon-crawler
-crawlin' in a dungeon
+# Unity-Matchmaking
+An example project utilizing lobby, relay and netcode
 
-yeah
+Open the folder using Unity Hub.
