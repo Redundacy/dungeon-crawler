@@ -873,6 +873,7 @@ GameObject:
   - component: {fileID: 733578645}
   - component: {fileID: 733578644}
   - component: {fileID: 733578643}
+  - component: {fileID: 733578646}
   m_Layer: 5
   m_Name: Dropdown (Legacy)
   m_TagString: Untagged
@@ -951,13 +952,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1000,6 +995,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733578641}
   m_CullTransparentMesh: 1
+--- !u!114 &733578646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733578641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43567007380d3c4ab4f7f1df023c882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &797611853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +1921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 125}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 700, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1278099692
@@ -2734,7 +2741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1611041479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2956,7 +2963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &1644402061
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3308,7 +3315,7 @@ PrefabInstance:
     - target: {fileID: 6381367327214441529, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6381367327214441529, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
@@ -3335,30 +3342,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'SoundSlider '
       objectReference: {fileID: 0}
+    - target: {fileID: 6381367327214441541, guid: 190e2ba12e1030c44af80c5ceff046b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6381367328198125693, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6381367328198125693, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6381367328198125693, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6381367328483939278, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6381367328483939278, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 190e2ba12e1030c44af80c5ceff046b2, type: 3}
