@@ -37,6 +37,7 @@ public class PlayerController : NetworkBehaviour {
             else PauseMenuExit();
             
         }
+
     }
 
     public override void OnNetworkSpawn() {

@@ -48,4 +48,14 @@ public class EnemyMovement : MonoBehaviour //change later
         agent.SetDestination(TargetPosition);
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("collision");
+        if (collision.transform == player)
+        {
+            // do a thing
+            Debug.Log("tagged");
+        }
+    }
 }
