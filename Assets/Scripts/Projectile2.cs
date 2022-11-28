@@ -7,9 +7,13 @@ public class Projectile2 : MonoBehaviour
     private bool collided;
     void OnCollisionEnter (Collision co)
     {
-        if(co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player" && !collided)
+        if(co.gameObject.tag != "Player" && !collided)
         {
             collided = true;
+            if (co.gameObject.tag == "Enemy")
+            {
+            Destroy (co.gameObject);
+            }
             Destroy (gameObject);
         }
     }
