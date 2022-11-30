@@ -81,7 +81,7 @@ public class RigidBodyMovementScript : MonoBehaviour
     {
         xRot -= PlayerMouseInput.y * Sensitivity;
 
-        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
+        transform.Rotate(0f, PlayerMouseInput.x * 2 * Sensitivity, 0f);
         PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
 
     }
