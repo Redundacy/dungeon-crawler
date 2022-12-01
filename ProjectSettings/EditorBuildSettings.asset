@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_Game/Scenes/Lobby.unity
     guid: 1c590ef88b0434e45a0236a04c4333dc
   - enabled: 0
-    path: Assets/_Game/Scenes/GameTime.unity
+    path: 
     guid: 609816153235c454193b4cd05f0ceb0e
   - enabled: 1
     path: Assets/_Game/Scenes/Game.unity
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Game/Scenes/3DTesting.unity
+    guid: 78f0208f1debc704180867b4b171dfbb
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 0a475cd781e04ef4ab8b4c839c203689,
       type: 2}

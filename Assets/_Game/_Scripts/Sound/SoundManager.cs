@@ -30,7 +30,8 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Game")
+        //if (SceneManager.GetActiveScene().name == "Game")
+        if (SceneManager.GetActiveScene().name == "3DTesting")
         {
             Destroy(this.gameObject);
         }

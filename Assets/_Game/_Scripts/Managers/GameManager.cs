@@ -27,6 +27,7 @@ public class GameManager : NetworkBehaviour {
             {                
                 done = true; // breaks the loop
                 SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId,  n);
+                this.gameObject.SetActive(false);
             }
             yield return null; // wait until next frame, then continue execution from here (loop continues)
         }

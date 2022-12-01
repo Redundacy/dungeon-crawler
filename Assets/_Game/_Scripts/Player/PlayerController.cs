@@ -4,9 +4,10 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : NetworkBehaviour {
-    [SerializeField] private float _speed = 3;
 
+// Script handle client player misc ( camera , pauseMenu)
+public class PlayerController : NetworkBehaviour {
+    [SerializeField] GameObject playerCam; 
     [SerializeField] GameObject pauseMenu; 
 
     public GameObject Boss;
@@ -14,25 +15,20 @@ public class PlayerController : NetworkBehaviour {
     private Rigidbody _rb;
 
     // Used to keep track when the player pasue the game
-    private float oldSpeed;
+    //private float oldSpeed;
 
     private void Awake() {
-        _rb = GetComponent<Rigidbody>();
-        oldSpeed = _speed;
         Boss = GameObject.FindGameObjectWithTag("Boss");
     }
 
 
     private void Update() {
-        var dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        _rb.velocity = dir * _speed;
-
         // If the player pressed , the pauseMenu should appear, as well as the player movement should halt
         // Else , resume as usual
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(pauseMenu.activeInHierarchy){
                 pauseMenu.SetActive(false);
-                _speed = oldSpeed;
+                //_speed = oldSpeed;
             } 
             else PauseMenuExit();
             
@@ -41,11 +37,12 @@ public class PlayerController : NetworkBehaviour {
 
     public override void OnNetworkSpawn() {
         if (!IsOwner) Destroy(this);
+        if (IsOwner) playerCam.SetActive(true);
     }
 
 
     public void PauseMenuExit(){
         pauseMenu.SetActive(true);
-        _speed = 0;
+        //_speed = 0;
     }
 }

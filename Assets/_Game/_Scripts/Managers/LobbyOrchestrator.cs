@@ -185,10 +185,10 @@ public class LobbyOrchestrator : NetworkBehaviour {
         using (new Load("Starting the game...")) {
             await MatchmakingService.LockLobby();
             // This line is for the main game
-            //NetworkManager.Singleton.SceneManager.LoadScene("GameTime", LoadSceneMode.Single);
+            //NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
 
             // This line is for testing 
-            NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene("3DTesting", LoadSceneMode.Single);
         }
     }
 

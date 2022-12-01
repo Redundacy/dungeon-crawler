@@ -855,12 +855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e332ec9a9c71c6468566528675195a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &708566837 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4094912254349111196, guid: 49574e1488c86d747a02cbf84b1703b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 7305721791321767825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &733578641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1473,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 0}
     NetworkPrefabs:
     - Override: 0
-      Prefab: {fileID: 440449775408231751, guid: 97574813880cf9241a9299bddc9fe24a,
+      Prefab: {fileID: 5643752441077818651, guid: f24e95d708008e44d9249423e6c85731,
         type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
@@ -3467,11 +3461,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 143124830341065910, guid: 49574e1488c86d747a02cbf84b1703b0,
-        type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 708566837}
     - target: {fileID: 143124830341065910, guid: 49574e1488c86d747a02cbf84b1703b0,
         type: 3}
       propertyPath: volumeSlider
