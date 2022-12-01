@@ -48,7 +48,8 @@ public class RigidBodyMovementScript : NetworkBehaviour
 
         //JUMP
         if(Input.GetKeyDown(KeyCode.Space)) 
-        {
+        {   
+            print("Jump");
             if (Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask)) 
             {
                 PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
@@ -58,6 +59,7 @@ public class RigidBodyMovementScript : NetworkBehaviour
       //DODGE
         if ((Input.GetKeyDown("f") || isDodgeRolling) && DodgeRollTimer >= 0 && DodgeRollCooldown <= 0) 
         {
+            print("Sprint");
             PlayerBody.AddForce(transform.forward * Dodgeforce, ForceMode.Force);
             isDodgeRolling = true;
             DodgeRollTimer -= 1;

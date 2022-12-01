@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1598652458035335551}
   - component: {fileID: -8922410529875614098}
   - component: {fileID: 440449775408231757}
+  - component: {fileID: -4224030669271766494}
   - component: {fileID: -5639765197173882881}
   - component: {fileID: -6851482241638476347}
   m_Layer: 3
@@ -147,7 +148,10 @@ MonoBehaviour:
   Speed: 5
   Sensitivity: 3
   Jumpforce: 10
+  DodgeRollCooldownOriginal: 50
+  DodgeRollTimerOriginal: 50
   Dodgeforce: 10
+  isDodgeRolling: 0
 --- !u!114 &-8922410529875614098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +188,22 @@ MonoBehaviour:
   playerCam: {fileID: 7685069921368521266}
   pauseMenu: {fileID: 7264170941837117513}
   Boss: {fileID: 2259279335968558005, guid: 3f84c278d5da7874c8c514f9cc837604, type: 3}
+--- !u!114 &-4224030669271766494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440449775408231751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9929f9c1414014c94d3dd5e8163229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwingCooldownOriginal: 25
+  SwingTimerOriginal: 7
+  SwingSpeed: 0.5
+  isSwinging: 0
 --- !u!114 &-5639765197173882881
 MonoBehaviour:
   m_ObjectHideFlags: 0
