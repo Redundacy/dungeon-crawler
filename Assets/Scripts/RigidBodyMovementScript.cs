@@ -11,10 +11,6 @@ public class RigidBodyMovementScript : MonoBehaviour
     private CharacterController _charController;
 
 
-    private float inputX;
-    private float inputZ;
-    private Vector3 v_movement;
-    private Vector3 v_velocity;
 
 
     [SerializeField] private LayerMask FloorMask;
@@ -31,6 +27,7 @@ public class RigidBodyMovementScript : MonoBehaviour
     [SerializeField] private bool isDodgeRolling = false;
     private float DodgeRollTimer;
     private float DodgeRollCooldown;
+    public float rotationSpeed;
 
 
     private void Start()
@@ -46,16 +43,31 @@ public class RigidBodyMovementScript : MonoBehaviour
     {
         PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        PlayerMovementInput.Normalize();
+
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+        PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+
+        // transform.Translate(PlayerMovementInput * Speed * Time.deltaTime, Space.World);
+
+
+        
+        if (PlayerMovementInput != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(PlayerMovementInput, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);            
+        }
 
 
     }
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
-        PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+        
 
 
         //JUMP
@@ -89,10 +101,12 @@ public class RigidBodyMovementScript : MonoBehaviour
 
     }
 
+  
+    
+
 
     private void FixedUpdate()
     {
         MovePlayer();
-        PlayerBody.transform.Rotate(Vector3.up * inputX * (300f * Time.deltaTime));
     }
 }
