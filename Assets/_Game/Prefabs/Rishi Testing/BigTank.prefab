@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 6899184955372754122}
   - component: {fileID: -6851482241638476347}
   m_Layer: 3
-  m_Name: Mage
+  m_Name: BigTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
