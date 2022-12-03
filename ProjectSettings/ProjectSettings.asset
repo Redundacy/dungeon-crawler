@@ -868,11 +868,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 29cdf559-27d6-46d8-bec6-f9304415e7a2
+  cloudProjectId: 0cf18fad-8834-41c0-b51b-9d69471b1504
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Relay (2)
-  organizationId: dungeon-crawler-72571c58-db53-4e27-8cd3-441d569ce715
+  projectName: dungeon-crawler
+  organizationId: kuribodragon
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
