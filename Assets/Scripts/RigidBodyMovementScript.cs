@@ -49,8 +49,8 @@ public class RigidBodyMovementScript : MonoBehaviour
 
         PlayerMovementInput.Normalize();
 
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
-        PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+        // Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+        // PlayerBody.velocity = new Vector3(MoveVector.x,0f,MoveVector.z);
 
         // transform.Translate(PlayerMovementInput * Speed * Time.deltaTime, Space.World);
 
@@ -59,7 +59,29 @@ public class RigidBodyMovementScript : MonoBehaviour
         if (PlayerMovementInput != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(PlayerMovementInput, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);            
+            if (Input.GetKey("w")) {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+            PlayerBody.velocity = new Vector3(0f,0f,MoveVector.z);    
+            } 
+            else if (Input.GetKey("s")) 
+            {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+            PlayerBody.velocity = new Vector3(0f,0f,-MoveVector.z);    
+            }   
+            else if (Input.GetKey("a")) 
+            {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+            PlayerBody.velocity = new Vector3(-Speed,0f,0f);    
+            }     
+            else if (Input.GetKey("d")) 
+            {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+            PlayerBody.velocity = new Vector3(Speed,0f,0f);    
+            } 
         }
 
 

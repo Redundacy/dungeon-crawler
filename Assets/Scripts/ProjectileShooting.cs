@@ -57,12 +57,12 @@ public class ProjectileShooting : MonoBehaviour
         if (leftSide)
         {
         var projectileObj1 = Instantiate (projectile1, firePoint.position, Quaternion.identity) as GameObject;
-        projectileObj1.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+        projectileObj1.GetComponent<Rigidbody>().velocity = (transform.forward).normalized * projectileSpeed;
         }
         else 
         {
         var projectileObj2 = Instantiate (projectile2, firePoint.position, Quaternion.identity) as GameObject;
-        projectileObj2.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+        projectileObj2.GetComponent<Rigidbody>().velocity = (transform.forward).normalized * projectileSpeed;
         }
     }
 }
