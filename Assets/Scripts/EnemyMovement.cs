@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour //change later
     public float sightRadius = 5;
     private Vector3 lastPlayerPosition;
     enemyState currentState;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,13 @@ public class EnemyMovement : MonoBehaviour //change later
     // Update is called once per frame
     void Update()
     {
+        if (currentState == enemyState.WANDERING)
+        {
+            animator.SetBool("WANDERING", true);
+        }
+        else {
+            animator.SetBool("WANDERING", false);
+        }
         Collider[] inRangePlayers = Physics.OverlapSphere(this.transform.position, sightRadius, whatIsPlayer);
         if (inRangePlayers.Length > 0)
         {

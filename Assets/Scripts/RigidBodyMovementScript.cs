@@ -22,12 +22,13 @@ public class RigidBodyMovementScript : MonoBehaviour
     [SerializeField] private bool isDodgeRolling = false;
     private float DodgeRollTimer;
     private float DodgeRollCooldown;
-
+    //animator
+    public Animator animator;
 
     private void Start()
     {
-    DodgeRollTimer = DodgeRollTimerOriginal;
-    DodgeRollCooldown = DodgeRollCooldownOriginal;
+        DodgeRollTimer = DodgeRollTimerOriginal;
+        DodgeRollCooldown = DodgeRollCooldownOriginal;
     }
 
 
@@ -42,12 +43,14 @@ public class RigidBodyMovementScript : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed; 
+        //added velocity
+        var velocity = (PlayerMovementInput) * Speed;
+        Vector3 MoveVector = transform.TransformDirection(velocity);
         PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
-
+        animator.SetFloat("Speed", velocity.magnitude);
 
         //JUMP
-        if(Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
             if (Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask)) 
             {

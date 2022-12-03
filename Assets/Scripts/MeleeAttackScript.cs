@@ -7,7 +7,7 @@ public class MeleeAttackScript : MonoBehaviour
     [SerializeField] private float SwingCooldownOriginal = 20;
     [SerializeField] private float SwingTimerOriginal = 1;
     [SerializeField] private float SwingSpeed = 0.5f;
-    [SerializeField] private bool isSwinging = false;
+    [SerializeField] private int isSwinging = 0;
     GameObject Blade;
     private float SwingCooldown;
     private float SwingTimer;
@@ -17,33 +17,33 @@ public class MeleeAttackScript : MonoBehaviour
     {
         SwingCooldown = SwingCooldownOriginal;
         SwingTimer = SwingTimerOriginal;
-        Blade = GameObject.Find("Blade");
-    
+        Blade = transform.Find("weapon").gameObject;
     }
-
 
     private void Swing()
     {
-        if ((Input.GetKeyDown("q") || isSwinging ) && SwingTimer >= 0 && SwingCooldown <= 0)
+        if ((Input.GetKey(KeyCode.Mouse0) || isSwinging == 1) && SwingTimer >= 0 && SwingCooldown <= 0)
         {
         //SWING
         Blade.transform.Rotate(SwingSpeed*0.1f, 0.0f, 0.0f, Space.Self);
-        isSwinging = true;
+        
+        isSwinging = 1;
+        
         SwingTimer --;
         }
-        else if ((Input.GetKeyDown("q") || isSwinging) && SwingTimer < 0) 
+        else if ((Input.GetKey(KeyCode.Mouse0) || isSwinging == 1) && SwingTimer < 0) 
         {
-        isSwinging = false;
+        isSwinging = 0;
         SwingTimer = SwingTimerOriginal;
         SwingCooldown = SwingCooldownOriginal;
         }
-        else if (isSwinging == false && Blade.transform.localEulerAngles.x > 0) 
+        else if (isSwinging == 0 && Blade.transform.localEulerAngles.x >= SwingSpeed * 0.1f) 
         {
             UnSwing();
         }
         else
         {
-            SwingCooldown --;
+            if (SwingCooldown > 0) { SwingCooldown--; }
         }
     }
 
@@ -54,7 +54,7 @@ public class MeleeAttackScript : MonoBehaviour
 
     void OnCollisionEnter (Collision co)
     {
-        if(isSwinging && co.gameObject.tag == "Enemy" && co.gameObject.tag != "Player")
+        if(isSwinging == 1 && co.gameObject.tag == "Enemy" && co.gameObject.tag != "Player")
         {
             Destroy (co.gameObject);
         }
