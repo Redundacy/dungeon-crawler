@@ -9,6 +9,7 @@ public class MeleeAttackScript : NetworkBehaviour
     [SerializeField] private float SwingTimerOriginal = 1;
     [SerializeField] private float SwingSpeed = 0.5f;
     [SerializeField] private int isSwinging = 0;
+    [SerializeField] private int damage = 2;
     GameObject Blade;
     private float SwingCooldown;
     private float SwingTimer;
@@ -55,16 +56,19 @@ public class MeleeAttackScript : NetworkBehaviour
 
     void OnCollisionEnter (Collision co)
     {
-        if(isSwinging == 1 && co.gameObject.tag == "Enemy" && co.gameObject.tag != "Player")
+        if(isSwinging == 1 && co.gameObject.tag == "Enemy")
         {
-            Destroy (co.gameObject);
+            co.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }
 
 
     void FixedUpdate()
-    {
-        if (!IsOwner) return;
+	{
+		if (!IsOwner)
+		{
+			Destroy(this);
+		}
         RequestFireServerRpc();
         Swing();
     }

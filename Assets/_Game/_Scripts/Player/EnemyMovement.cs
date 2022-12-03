@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour //change later
     void Start()
     {
         currentState = enemyState.WANDERING;
-		agent.stoppingDistance = 2f;
+		agent.stoppingDistance = 1f;
 	}
 
     // Update is called once per frame
@@ -76,4 +76,12 @@ public class EnemyMovement : MonoBehaviour //change later
         agent.SetDestination(TargetPosition);
 
     }
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag == "Player")
+		{
+			other.gameObject.GetComponentInChildren<HealthBar>().ModifyHP(-1);
+		}
+	}
 }

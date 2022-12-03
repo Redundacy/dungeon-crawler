@@ -19,7 +19,7 @@ public class RigidBodyMovementScript : NetworkBehaviour
     [SerializeField] private CinemachineFreeLook PlayerCamera;
     [SerializeField] private Rigidbody PlayerBody;
     [Space]
-    [SerializeField] private float Speed;
+    [SerializeField] public float Speed;
     [SerializeField] private float Sensitivity;
     [SerializeField] private float Jumpforce;
     [SerializeField] private float DodgeRollCooldownOriginal = 50;
@@ -40,8 +40,11 @@ public class RigidBodyMovementScript : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsOwner)
+        {
+            Destroy(this);
+        }
         UpdateMovePlayer();
-        
 
     }
 

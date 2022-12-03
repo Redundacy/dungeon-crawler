@@ -41,7 +41,11 @@ public class PlayerController : NetworkBehaviour {
     }
 
     public override void OnNetworkSpawn() {
-        if (!IsOwner) Destroy(this);
+        if (!IsOwner)
+        {
+            Destroy(playerCam);
+            Destroy(this);
+        }
         if (IsOwner){
             playerCam.SetActive(true);
             freeLook.SetActive(true);

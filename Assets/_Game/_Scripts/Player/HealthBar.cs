@@ -6,45 +6,68 @@ using Unity.Netcode;
 
 public class HealthBar : NetworkBehaviour
 {   
-    private const float MAX_HEALTH = 100f;
+    private const float MAX_HEALTH = 10f;
 
     private Image healthBar;
 
-    public float health = MAX_HEALTH;
+    private NetworkVariable<int> _netHealth = new(writePerm: NetworkVariableWritePermission.Owner);
+
+    private float tempSpeed = 0;
+
+	public int health = (int)MAX_HEALTH;
 
 
     // Start is called before the first frame update
     void Start()
     {
         healthBar = GetComponent<Image>();
+        if(IsOwner)
+        {
+            _netHealth.Value = (int)MAX_HEALTH;
+			tempSpeed = gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed;
+		}
     }
 
-    private void ModifyHP(int amount){
-        health += amount;
+    public void ModifyHP(int amount){
+        if(IsOwner)
+        {
+            health += amount;
+        }
         healthBar.fillAmount = health / MAX_HEALTH;
     }
 
     // Update is called once per frame
     void Update()
     {
-         // don't do anything if you're not the owner
-        if (!IsOwner) return;
-        
-        if(Input.GetKeyDown(KeyCode.Space)){
-            RequestFireServerRpc();
-            ModifyHP(-10);
-        }
+		if (IsOwner)
+		{
+            _netHealth.Value = health;
+            if(_netHealth.Value <= 0)
+            {
+                tempSpeed = gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed;
+                gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed = 0;
+            } else
+            {
+
+				gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed = tempSpeed;
+			}
+		}
+		else
+		{
+            health = _netHealth.Value;
+			healthBar.fillAmount = health / MAX_HEALTH;
+		}
         
     }
 
     [ServerRpc]
-    private void RequestFireServerRpc() {
-        FireClientRpc();
+    public void RequestFireServerRpc(int damage) {
+        FireClientRpc(damage);
     }
 
     [ClientRpc]
-    private void FireClientRpc() {
-        if (!IsOwner) ModifyHP(-10);
+    private void FireClientRpc(int damage) {
+        if (!IsOwner) ModifyHP(damage);
     }
 
 

@@ -5,12 +5,21 @@ using UnityEngine;
 public class Projectile2 : MonoBehaviour
 {
     private bool collided;
-    void OnCollisionEnter (Collision co)
-    {
-        if(co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player" && !collided)
-        {
-            collided = true;
-            Destroy (gameObject);
-        }
-    }
+	void OnTriggerEnter(Collider co)
+	{
+		if (co.gameObject.tag == "Enemy" && !collided)
+		{
+			collided = true;
+			co.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
+			co.gameObject.GetComponent<EnemyHealth>().RequestFireServerRpc(1);
+			Destroy(gameObject);
+		} else if((co.gameObject.tag == "Player") && !collided) {
+			co.gameObject.GetComponentInChildren<HealthBar>().ModifyHP(1);
+			Destroy(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 }

@@ -4183,6 +4183,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6381367327081460908, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
+      propertyPath: m_Value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381367327081460908, guid: 190e2ba12e1030c44af80c5ceff046b2,
+        type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 4
       objectReference: {fileID: 0}
@@ -4204,7 +4209,7 @@ PrefabInstance:
     - target: {fileID: 6381367327081460908, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6381367327214441529, guid: 190e2ba12e1030c44af80c5ceff046b2,
         type: 3}
