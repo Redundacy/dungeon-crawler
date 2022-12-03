@@ -47,18 +47,18 @@ public class GameManager : NetworkBehaviour {
         if(NetworkManager.Singleton != null )NetworkManager.Singleton.Shutdown();
     }
 
-    void Update(){
-        if (Boss == null)
-        {   
-            StartCoroutine(ExampleCoroutine());
-        }
-    }
+    // void Update(){
+    //     if (Boss == null)
+    //     {   
+    //         StartCoroutine(ExampleCoroutine());
+    //     }
+    // }
 
-    IEnumerator ExampleCoroutine(){
-        yield return new WaitForSeconds(3);
-        OnDestroy();
-        print("?");
-        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
-    }
+    // IEnumerator ExampleCoroutine(){
+    //     yield return new WaitForSeconds(3);
+    //     OnDestroy();
+    //     print("?");
+    //     SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
+    // }
 
 }

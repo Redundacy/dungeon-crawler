@@ -9,6 +9,10 @@ public class AuthenticationManager : MonoBehaviour {
 
     [SerializeField] private GameObject SettingsMenu;
 
+    [SerializeField] private GameObject Credit;
+
+    [SerializeField] private GameObject CreditMenu;
+
     [SerializeField] private GameObject Quit;
 
     public async void LoginAnonymously() {
@@ -21,6 +25,7 @@ public class AuthenticationManager : MonoBehaviour {
     public void SettingsOn(){
         Start.SetActive(false);
         Settings.SetActive(false);
+        Credit.SetActive(false);
         Quit.SetActive(false);
         SettingsMenu.SetActive(true);
     }
@@ -28,8 +33,25 @@ public class AuthenticationManager : MonoBehaviour {
     public void SettingsOff(){
         Start.SetActive(true);
         Settings.SetActive(true);
+        Credit.SetActive(true);
         Quit.SetActive(true);
         SettingsMenu.SetActive(false);
+    }
+
+    public void CreditOn(){
+        Start.SetActive(false);
+        Settings.SetActive(false);
+        Credit.SetActive(false);
+        Quit.SetActive(false);
+        CreditMenu.SetActive(true);
+    }
+
+    public void CreditOff(){
+        Start.SetActive(true);
+        Settings.SetActive(true);
+        Credit.SetActive(true);
+        Quit.SetActive(true);
+        CreditMenu.SetActive(false);
     }
     
     public void GameExit(){

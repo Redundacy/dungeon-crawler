@@ -8,14 +8,15 @@ using UnityEngine.SceneManagement;
 // Script handle client player misc ( camera , pauseMenu)
 public class PlayerController : NetworkBehaviour {
     [SerializeField] GameObject playerCam; 
+
+    [SerializeField] GameObject freeLook; 
     [SerializeField] GameObject pauseMenu; 
+
+    [SerializeField] GameObject winMenu; 
 
     public GameObject Boss;
 
     private Rigidbody _rb;
-
-    // Used to keep track when the player pasue the game
-    //private float oldSpeed;
 
     private void Awake() {
         Boss = GameObject.FindGameObjectWithTag("Boss");
@@ -28,21 +29,33 @@ public class PlayerController : NetworkBehaviour {
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(pauseMenu.activeInHierarchy){
                 pauseMenu.SetActive(false);
-                //_speed = oldSpeed;
             } 
             else PauseMenuExit();
             
+        }
+
+        if (Boss == null)
+        {   
+            StartCoroutine(ExampleCoroutine());
         }
     }
 
     public override void OnNetworkSpawn() {
         if (!IsOwner) Destroy(this);
-        if (IsOwner) playerCam.SetActive(true);
+        if (IsOwner){
+            playerCam.SetActive(true);
+            freeLook.SetActive(true);
+        } 
     }
 
 
     public void PauseMenuExit(){
         pauseMenu.SetActive(true);
-        //_speed = 0;
+    }
+
+    IEnumerator ExampleCoroutine(){
+        winMenu.SetActive(true);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Auth" , LoadSceneMode.Single);
     }
 }

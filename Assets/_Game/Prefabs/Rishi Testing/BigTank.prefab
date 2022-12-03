@@ -189,7 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 2823819551736239169}
-  pauseMenu: {fileID: 8494157911095590671}
+  pauseMenu: {fileID: 7086036806455683848}
+  winMenu: {fileID: 8597434962620373088}
   Boss: {fileID: 2259279335968558005, guid: 3f84c278d5da7874c8c514f9cc837604, type: 3}
 --- !u!114 &2101906098124421974
 MonoBehaviour:
@@ -1598,11 +1599,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 440449775408231747}
     m_Modifications:
-    - target: {fileID: 192621997584108088, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 673342714197414611, guid: e7f9cbcac6d76c74ebc966086e113ade,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1708,65 +1704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2184439931244967587, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2184439931244967587, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2184439931244967587, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseMenuExit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2184439931244967587, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2184439931244967589, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2184439932320837313, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5586107194669521240, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929549748947194701, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6499311734732918111, guid: e7f9cbcac6d76c74ebc966086e113ade,
         type: 3}
       propertyPath: m_Name
       value: Pause Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499311734732918111, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499311734732918111, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8113063011197557076, guid: e7f9cbcac6d76c74ebc966086e113ade,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7f9cbcac6d76c74ebc966086e113ade, type: 3}
@@ -1776,9 +1717,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3446236726612570704}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8494157911095590671 stripped
+--- !u!1 &7086036806455683848 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6499311734732918111, guid: e7f9cbcac6d76c74ebc966086e113ade,
+  m_CorrespondingSourceObject: {fileID: 5586107194669521240, guid: e7f9cbcac6d76c74ebc966086e113ade,
+    type: 3}
+  m_PrefabInstance: {fileID: 3446236726612570704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8597434962620373088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6378020143022697008, guid: e7f9cbcac6d76c74ebc966086e113ade,
     type: 3}
   m_PrefabInstance: {fileID: 3446236726612570704}
   m_PrefabAsset: {fileID: 0}

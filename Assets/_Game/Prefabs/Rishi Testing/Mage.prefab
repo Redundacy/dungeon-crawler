@@ -189,7 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 2823819551736239169}
-  pauseMenu: {fileID: 8494157911095590671}
+  freeLook: {fileID: 8158161694625088065}
+  pauseMenu: {fileID: 7086036806455683848}
+  winMenu: {fileID: 8597434962620373088}
   Boss: {fileID: 2259279335968558005, guid: 3f84c278d5da7874c8c514f9cc837604, type: 3}
 --- !u!114 &2101906098124421974
 MonoBehaviour:
@@ -1438,7 +1440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3887150271231982019
 Transform:
   m_ObjectHideFlags: 0
@@ -1761,7 +1763,7 @@ PrefabInstance:
     - target: {fileID: 6499311734732918111, guid: e7f9cbcac6d76c74ebc966086e113ade,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8113063011197557076, guid: e7f9cbcac6d76c74ebc966086e113ade,
         type: 3}
@@ -1776,9 +1778,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3446236726612570704}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8494157911095590671 stripped
+--- !u!1 &7086036806455683848 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6499311734732918111, guid: e7f9cbcac6d76c74ebc966086e113ade,
+  m_CorrespondingSourceObject: {fileID: 5586107194669521240, guid: e7f9cbcac6d76c74ebc966086e113ade,
+    type: 3}
+  m_PrefabInstance: {fileID: 3446236726612570704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8597434962620373088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6378020143022697008, guid: e7f9cbcac6d76c74ebc966086e113ade,
     type: 3}
   m_PrefabInstance: {fileID: 3446236726612570704}
   m_PrefabAsset: {fileID: 0}
