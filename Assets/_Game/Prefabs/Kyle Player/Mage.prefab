@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Follow: {fileID: 8732197044605926050}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 4.5
-    m_Radius: 10
+    m_Radius: 6
   - m_Height: 2.5
-    m_Radius: 10
+    m_Radius: 6
   - m_Height: 0.4
-    m_Radius: 10
+    m_Radius: 6
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 8732197043327750238}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 557
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
@@ -1171,12 +1171,9 @@ MonoBehaviour:
   cam: {fileID: 8732197043861071699}
   projectile1: {fileID: 6711149507662021293, guid: 3f6fd05dcec80f048b902352344757b5,
     type: 3}
-  projectile2: {fileID: 5275909737679529652, guid: fc86d94e38408624dbd1d3a0d8a0ce49,
-    type: 3}
-  leftFirePoint: {fileID: 0}
-  rightFirePoint: {fileID: 8732197044984744926}
+  FirePoint: {fileID: 8732197044984744926}
   projectileSpeed: 30
-  fireRate: 4
+  fireRate: 1
 --- !u!114 &-8664291718811822288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,7 +1243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8732197044984744927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

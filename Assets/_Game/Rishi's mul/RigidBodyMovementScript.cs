@@ -85,14 +85,14 @@ public class RigidBodyMovementScript : NetworkBehaviour
         }
 
         //DODGE
-        if ((Input.GetKey("f") || isDodgeRolling) && DodgeRollTimer >= 0 && DodgeRollCooldown <= 0)
+        if ((Input.GetKey(KeyCode.Mouse1) || isDodgeRolling) && DodgeRollTimer >= 0 && DodgeRollCooldown <= 0)
         {
             PlayerBody.AddForce(transform.forward * Dodgeforce, ForceMode.Force);
             isDodgeRolling = true;
             DodgeRollTimer -= 1;
 
         }
-        else if ((Input.GetKey("f") || isDodgeRolling) && DodgeRollTimer < 0)
+        else if ((Input.GetKey(KeyCode.Mouse1) || isDodgeRolling) && DodgeRollTimer < 0)
         {
             isDodgeRolling = false;
             DodgeRollTimer = DodgeRollTimerOriginal;

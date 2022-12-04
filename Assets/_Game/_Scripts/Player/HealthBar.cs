@@ -29,10 +29,7 @@ public class HealthBar : NetworkBehaviour
     }
 
     public void ModifyHP(int amount){
-        if(IsOwner)
-        {
-            health += amount;
-        }
+        health += amount;
         healthBar.fillAmount = health / MAX_HEALTH;
     }
 
@@ -41,15 +38,19 @@ public class HealthBar : NetworkBehaviour
     {
 		if (IsOwner)
 		{
+            if (health > MAX_HEALTH)
+            {
+                health = (int)MAX_HEALTH;
+            }
             _netHealth.Value = health;
             if(_netHealth.Value <= 0)
             {
-                tempSpeed = gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed;
-                gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed = 0;
+                _netHealth.Value = 0;
+                health = 0;
+                gameObject.GetComponentInParent<RigidBodyMovementScript>().enabled = false;
             } else
             {
-
-				gameObject.GetComponentInParent<RigidBodyMovementScript>().Speed = tempSpeed;
+				gameObject.GetComponentInParent<RigidBodyMovementScript>().enabled = true;
 			}
 		}
 		else

@@ -28,6 +28,10 @@ public class EnemyHealth : NetworkBehaviour
 		}
 		if(_netHealth.Value <= 0)
 		{
+			if (gameObject.tag == "Boss")
+			{
+				Destroy(gameObject);
+			}
 			gameObject.SetActive(false);
 		}
 	}

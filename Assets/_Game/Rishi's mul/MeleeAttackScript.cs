@@ -56,7 +56,7 @@ public class MeleeAttackScript : NetworkBehaviour
 
     void OnCollisionEnter (Collision co)
     {
-        if(isSwinging == 1 && co.gameObject.tag == "Enemy")
+        if(isSwinging == 1 && (co.gameObject.tag == "Enemy" || co.gameObject.tag == "Boss"))
         {
             co.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
@@ -65,10 +65,7 @@ public class MeleeAttackScript : NetworkBehaviour
 
     void FixedUpdate()
 	{
-		if (!IsOwner)
-		{
-			Destroy(this);
-		}
+        if (!IsOwner) return;
         RequestFireServerRpc();
         Swing();
     }
